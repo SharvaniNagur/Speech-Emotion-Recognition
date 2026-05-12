@@ -1,0 +1,7 @@
+    inputs = Input(shape=input_shape)
+    lstm = LSTM(128, return_sequences=True)(inputs)
+    attention = Attention()(lstm)
+    dropout = Dropout(0.3)(attention)
+    outputs = Dense(num_classes, activation='softmax')(dropout)
+    model = Model(inputs=inputs, outputs=outputs)
+    model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
